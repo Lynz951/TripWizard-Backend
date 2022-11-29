@@ -3,35 +3,35 @@ from rest_framework import serializers
 from .models import *
 from pprint import pprint as p
 
-# class CustomUserSerializer(AbstractUser):
+class CustomUserSerializer(serializers.ModelSerializer):
     # some_relationship_fk = SomeRelationshipSerializer(required=False)   
-    # class Meta:
-    #     model = CustomUser
-    #     fields = (
-    #         'username',
-    #         'last_login'
-    #         'email',
-    #         'username',
-    #         'first_name',
-    #         'last_name',
-    #         'home_city',
-    #         'birthday',
-    #         'country_code',
-    #         'is_superuser',
-    #         'is_staff',
-    #         'is_active',
-    #         'can_edit',
-    #         'date_joined',
-    #     )
-    # extra_kwargs = {'password': {'write_only': True}}
+    class Meta:
+        model = CustomUser
+        fields = (
+            'birthday',
+            # 'username',
+            # 'last_login'
+            # 'email',
+            # 'username',
+            # 'first_name',
+            # 'last_name',
+            # 'home_city',
+            # 'country_code',
+            # 'is_superuser',
+            # 'is_staff',
+            # 'is_active',
+            # 'can_edit',
+            # 'date_joined',
+        )
+    extra_kwargs = {'password': {'write_only': True}}
 
-    # def create(self, validated_data):
-    #     password = validated_data.pop('password', None)
-    #     instance = self.Meta.model(**validated_data) 
-    #     if password is not None:
-    #         instance.set_password(password)
-    #     instance.save()
-    #     return instance
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data) 
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
 
 class TripSerializer(serializers.ModelSerializer):
