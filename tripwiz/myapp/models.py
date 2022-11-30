@@ -18,6 +18,16 @@ class CustomUser(AbstractUser):
     can_edit = models.BooleanField(null=True)
     date_joined = models.DateField(null=True)
 
+    extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)  # as long as the fields are the same, we can just use this
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
     def __str__(self):
         return self.username
 
