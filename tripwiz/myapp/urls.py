@@ -6,6 +6,7 @@ router = routers.SimpleRouter()
 router.register(r'trip', TripViewSet)
 router.register(r'customuser', CustomUserViewSet)
 router.register(r'plantype', PlanTypeViewSet)
+# router.register(r'plan', PlanViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

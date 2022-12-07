@@ -23,6 +23,11 @@ class PlanTypeViewSet(ModelViewSet):
     serializer_class = PlanTypeSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
 
+# class PlanViewSet(ModelViewSet):
+#     queryset = Plan.objects.all()
+#     serializer_class = PlanSerializer
+#     http_method_names = ['get', 'post', 'put', 'delete']
+
 class Trip_PlanAPIView(APIView):
 
     def get_object(self, trip_id):
@@ -33,8 +38,8 @@ class Trip_PlanAPIView(APIView):
 
     def get(self, request, trip_id=None, format=None):
         if trip_id:
-            data = self.get_object(trip_id)
-            serializer = PlanSerializer(data)
+            data = Plan.objects.filter(trip_id=trip_id)
+            serializer = PlanSerializer(data, many=True)
         else:
             data = Plan.objects.all()
             serializer = PlanSerializer(data, many=True)
