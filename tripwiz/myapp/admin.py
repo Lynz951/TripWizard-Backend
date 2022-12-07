@@ -6,3 +6,5 @@ from .models import *
 
 admin.site.register(CustomUser)
 admin.site.register(Trip)
+admin.site.register(PlanType)
+admin.site.register(Plan)

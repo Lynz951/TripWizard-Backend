@@ -40,3 +40,25 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.name + ": " + "Dates: " + self.start_date.strftime("%m/%d/%Y") + " - " + self.end_date.strftime("%m/%d/%Y") + " Description: " + self.description
+
+class PlanType(models.Model):
+    name = models.CharField(max_length=200)
+    
+
+    def __str__(self):
+        return "Type: " + self.name
+
+class Plan(models.Model):
+    trip_id = models.ForeignKey('Trip', on_delete=models.PROTECT, null=True)
+    plantype_id = models.ForeignKey('PlanType', on_delete=models.PROTECT, null=True)
+    name = models.CharField(max_length=200, null=True)
+    departure_date = models.DateField(null=True, blank=True)
+    arrival_date = models.DateField(null=True, blank=True)
+    dep_location = models.CharField(max_length=200, null=True, blank=True)
+    arr_location = models.CharField(max_length=200, null=True, blank=True)
+    ticket_info = models.CharField(max_length=2000, null=True, blank=True)
+    vehicle_info = models.CharField(max_length=2000, null=True, blank=True)
+    room_info = models.CharField(max_length=2000, null=True, blank=True)
+    link = models.CharField(max_length=200, null=True, blank=True)
+    notes = models.CharField(max_length=5000, null=True, blank=True)
+    

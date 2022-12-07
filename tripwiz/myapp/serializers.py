@@ -38,3 +38,13 @@ class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
         fields = '__all__'
+
+class PlanTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlanType
+        fields = '__all__'
+
+class PlanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plan
+        fields = '__all__'
