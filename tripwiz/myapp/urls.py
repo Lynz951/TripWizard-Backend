@@ -5,8 +5,10 @@ from rest_framework import routers
 router = routers.SimpleRouter()
 router.register(r'trip', TripViewSet)
 router.register(r'customuser', CustomUserViewSet)
-
+router.register(r'plantype', PlanTypeViewSet)
+# router.register(r'plan', PlanViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path("plan/<int:trip_id>/", Trip_PlanAPIView.as_view(), name="TripPlanLookup")
 ]
